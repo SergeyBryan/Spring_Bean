@@ -1,6 +1,7 @@
 package com.example.spring_bean;
 
 import com.example.spring_bean.model.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,18 +27,18 @@ public class TransportConfig {
     }
 
     @Bean(name = "vasiliy")
-    public Driver getCarDriver() {
-        return new Driver("Василий");
+    public Driver getCarDriver(@Qualifier("BMW") Transport transport) {
+        return new Driver("Василий", transport);
     }
 
     @Bean(name = "petrov")
-    public Driver getBusDriver() {
-        return new Driver("Петя");
+    public Driver getBusDriver(@Qualifier("Liaz") Transport transport) {
+        return new Driver("Петя", transport);
     }
 
     @Bean(name = "kirill")
-    public Driver getPickupDriver() {
-        return new Driver("Кирилл");
+    public Driver getPickupDriver(@Qualifier("LandRover") Transport transport) {
+        return new Driver("Кирилл", transport);
     }
 
 }
